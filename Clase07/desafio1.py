@@ -1,0 +1,10 @@
+cadena = """gordon lanzó su curva&strawberry ha fallado por un pie! -gritó Joe Castiglione&dos pies -le corrigió Troop&strawberry menea la cabeza como disgustado… -agrega el comentarista"""
+cadena = cadena.capitalize()
+cadena = cadena.replace("&", "...\n")
+cadena = cadena.replace("s","S")
+cadena = cadena.replace(" -", "-")
+cadena = cadena.replace("joe caStiglione..", "Joe Castiglione")
+cadena = cadena.replace("doS", "Dos")
+cadena = cadena.replace("pieS", "pies")
+cadena = cadena.replace("troop..", "Troop")
+print(cadena)
