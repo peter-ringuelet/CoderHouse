@@ -1,4 +1,7 @@
 from django.db import models
+from django.http import HttpResponse
+import datetime
+from django.template import Template, Context, loader
 
 # Create your models here.
 class Curso(models.Model):
@@ -20,3 +23,4 @@ class Entregable(models.Model):
     nombre = models.CharField(max_length=30)
     fechaDeEntrega = models.DateField()
     entregado = models.BooleanField()
+
