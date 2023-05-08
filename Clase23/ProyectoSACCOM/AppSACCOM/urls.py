@@ -1,5 +1,7 @@
 from django.urls import path
 from AppSACCOM import views
+from django.contrib.auth.views import LogoutView
+
 
 urlpatterns = [
     path('', views.inicio, name='Inicio'),
@@ -22,4 +24,8 @@ urlpatterns = [
     path('comision/nuevo/', views.ComisionCreacion.as_view(), name='ComisionNew'),
     path('comision/editar/(?P<pk>\d+)$', views.ComisionUpdate.as_view(), name='ComisionEdit'),
     path('comision/borrar/(?P<pk>\d+)$', views.ComisionDelete.as_view(), name='ComisionDelete'),
+    path('login', views.login_request, name="Login"),
+    path('register', views.register, name='Register'),
+    path('logout', LogoutView.as_view(template_name='AppSACCOM/logout.html'), name='Logout')
+
 ]

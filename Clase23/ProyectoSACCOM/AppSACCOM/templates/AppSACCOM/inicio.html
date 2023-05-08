@@ -1,6 +1,11 @@
 {% extends "AppSACCOM/padre.html" %}
 {% load static %}
 {% block contenidoQueCambia%}
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+    {% endif %}
+    
     <h3>Buscar Actividad</h3>
     {% if miFormulario.errors %} 
     

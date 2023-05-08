@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>SACCOM</title>
+        <title>Landing Page - Start Bootstrap Theme</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -20,10 +20,14 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+                <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
+                <a class="navbar-brand" href="{% url 'Comision' %}">Comision Directiva</a>
+                <a class="navbar-brand" href="{% url 'Socios' %}">Socios</a>
+                <a class="navbar-brand" href="{% url 'Actividades' %}">Actividades</a>
+                <a class="btn btn-primary" href="{% url 'Login'%}">LogIn</a>
             </div>
-        </nav>
+</nav>
+
         <!-- Masthead-->
         <header class="masthead">
             <div class="container position-relative">
@@ -40,12 +44,18 @@
                             <!-- To make this form functional, sign up at-->
                             <!-- https://startbootstrap.com/solution/contact-forms-->
                             <!-- to get an API token!-->
-                        
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </header>
+
+        <!-- Lo que cambia-->
+        {% block contenidoQueCambia%}
+
+        {% endblock %}
+
         <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">
