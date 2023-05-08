@@ -26,6 +26,8 @@ urlpatterns = [
     path('comision/borrar/(?P<pk>\d+)$', views.ComisionDelete.as_view(), name='ComisionDelete'),
     path('login', views.login_request, name="Login"),
     path('register', views.register, name='Register'),
-    path('logout', LogoutView.as_view(template_name='AppSACCOM/logout.html'), name='Logout')
+    path('logout', LogoutView.as_view(template_name='AppSACCOM/logout.html'), name='Logout'),
+    path("my-page/", views.MyView.as_view(), name="my_page"),
+    path("my-protected-page/", views.MyProtectedView.as_view(), name="my_protected_page"),
 
 ]

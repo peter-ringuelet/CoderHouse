@@ -10,6 +10,8 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from AppSACCOM.forms import UserRegisterForm
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 
@@ -178,26 +180,26 @@ class SocioDelete(DeleteView):
 
 
 # ----------Comision----------
-class ComisionList(ListView):
+class ComisionList(LoginRequiredMixin ,ListView):
     model = ComisionDirectiva
     template_name = "AppSACCOM/comision_list.html"
     context_object_name = 'comision'
 
 
-class ComisionDetalle(DetailView):
+class ComisionDetalle(LoginRequiredMixin, DetailView):
     model = ComisionDirectiva
     template_name = "AppSACCOM/comision_detalle.html"
     context_object_name = 'comision'
 
 
-class ComisionCreacion(CreateView):
+class ComisionCreacion(LoginRequiredMixin, CreateView):
     model = ComisionDirectiva
     success_url = "/AppSACCOM/comision/list"
     fields = ['nombre', 'apellido', 'dni', 'cargo']
     context_object_name = 'comision'
 
 
-class ComisionUpdate(UpdateView):
+class ComisionUpdate(LoginRequiredMixin, UpdateView):
     model = ComisionDirectiva
     success_url = "/AppSACCOM/comision/list"
     fields = ['nombre', 'apellido', 'dni', 'cargo']
@@ -205,7 +207,7 @@ class ComisionUpdate(UpdateView):
     context_object_name = 'comision'
 
 
-class ComisionDelete(DeleteView):
+class ComisionDelete(LoginRequiredMixin, DeleteView):
     model = ComisionDirectiva
     success_url = "/AppSACCOM/comision/list"
     template_name = 'AppSACCOM/comision_confirm_delete.html'
@@ -242,3 +244,29 @@ def register(request):
             #form = UserCreationForm()       
             form = UserRegisterForm()     
       return render(request,"AppSACCOM/registro.html" ,  {"form":form})
+  
+#----------Mixin----------
+class MyMixin:
+    def my_method(self):
+        return "Hello from MyMixin!"
+
+from django.views.generic import TemplateView
+
+class MyView(MyMixin, TemplateView):
+    template_name = "AppSACCOM/protected.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["message"] = self.my_method()
+        return context
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
+
+class MyProtectedView(MyMixin, LoginRequiredMixin, TemplateView):
+    template_name = "AppSACCOM/protected1.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["message"] = self.my_method()
+        return context
