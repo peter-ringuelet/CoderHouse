@@ -1,0 +1,18 @@
+{% extends "AppSACCOM/padre.html" %}
+{% load static %}
+{% block contenidoQueCambia%}
+    <h3>Buscar Actividad</h3>
+    {% if miFormulario.errors %} 
+    
+    <p style="color: red;"> Estan mal los datos, revisalos</p>
+    
+    {% endif %}
+
+    <form action="/AppSACCOM/buscar/" method="get">
+
+        <input type="text" name="nombre" id="nombre">
+
+        <input type="submit" value="Buscar">
+        
+     </form>   
+{% endblock %}
