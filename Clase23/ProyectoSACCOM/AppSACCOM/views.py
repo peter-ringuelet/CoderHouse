@@ -52,6 +52,8 @@ def comision(request):
  
       return render(request, "AppSACCOM/comision.html", {"miFormulario": miFormulario})
 
+
+@login_required
 def socio(request):
  
       if request.method == "POST":
