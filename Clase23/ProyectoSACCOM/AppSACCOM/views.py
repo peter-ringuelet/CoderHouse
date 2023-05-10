@@ -11,7 +11,7 @@ from django.contrib.auth import login, logout, authenticate
 from AppSACCOM.forms import UserRegisterForm
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -52,7 +52,6 @@ def comision(request):
  
       return render(request, "AppSACCOM/comision.html", {"miFormulario": miFormulario})
 
-
 def socio(request):
  
       if request.method == "POST":
@@ -70,7 +69,7 @@ def socio(request):
  
       return render(request, "AppSACCOM/socios.html", {"miFormulario": miFormulario})
 
-
+@login_required
 def inicio(request):
       return render(request, "AppSACCOM/inicio.html")
 
@@ -152,6 +151,7 @@ class ActividadDelete(DeleteView):
     success_url = "/AppSACCOM/actividad/list"
 
 #----------Socio----------
+
 class SocioList(ListView):
     model = Socio
     template_name = "AppSACCOM/socio_list.html"
