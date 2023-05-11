@@ -5,6 +5,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=254, unique=True, null=True)
     description = models.TextField(null=True, blank=True)
     website = models.URLField(null=True, blank=True)
 
